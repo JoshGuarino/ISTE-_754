@@ -20,7 +20,7 @@ function submitForm(){
         alert('The local-part in front of the @ must be exactly 8 characters long and start with "Josh".');
         return;
     }
-    if (email.slice(9) != 'gmail.com' && email.slice(9, -4) != 'yahoo.com' && email.slice(9, -4) != 'rit.edu') {
+    if (email.slice(9) != 'gmail.com' && email.slice(9) != 'yahoo.com' && email.slice(9) != 'rit.edu') {
         alert('Domain not valid, must be "rit.edu" or "yahoo.com" or "gmail.com".')
         return;
     }
@@ -43,15 +43,22 @@ function submitForm(){
         document.location.reload();
         return;
     }
-
-
-
+ 
+    //succesful completion of form
+    let elems = document.getElementsByTagName('form');
+    elems[0].parentNode.removeChild(elems[0]);
+    let msgElem = document.createElement('h1');
+    msgElem.setAttribute('id', 'msg')
+    msgElem.innerHTML = 'Wow good job, you know how to complete a form!';
+    document.getElementById('main').appendChild(msgElem);
     setInterval(function(){ 
         if (document.body.style.backgroundColor === 'white'){
             document.body.style.backgroundColor = 'black';
+            document.getElementById('msg').style.color = 'white';
         }
         else if (document.body.style.backgroundColor === 'black'){
             document.body.style.backgroundColor = 'white';
+            document.getElementById('msg').style.color = 'black';
         }
         else{
             document.body.style.backgroundColor = 'white';
