@@ -1,0 +1,21 @@
+nav{
+    background-color: crimson;
+    color: white;
+    min-height: 50px;
+    margin-bottom: 100px;
+}
+
+form{
+    color: white;
+    background-color: #6c757d;
+    padding: 5px;
+}
+
+.modal-header{
+    background-color: crimson;
+    color: white;
+}
+
+.hell-form{
+    border-radius: 10px;
+}
