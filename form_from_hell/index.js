@@ -30,7 +30,6 @@ function submitForm(){
         alert('Password must be 8-16 characters in length.');
         return;
     }
-    
 
     //background color check, can't submit if they have messed with color selector.
     if (document.body.style.backgroundColor != ''){
@@ -46,7 +45,18 @@ function submitForm(){
     }
 
 
-    alert('success');
+
+    setInterval(function(){ 
+        if (document.body.style.backgroundColor === 'white'){
+            document.body.style.backgroundColor = 'black';
+        }
+        else if (document.body.style.backgroundColor === 'black'){
+            document.body.style.backgroundColor = 'white';
+        }
+        else{
+            document.body.style.backgroundColor = 'white';
+        } 
+    }, 500);
 }
 
 //rloads the entire page
