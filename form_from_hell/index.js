@@ -10,7 +10,15 @@ function readInstructions(){
 function submitForm(){
     let email = document.getElementById("inputEmail").value;
     let password = document.getElementById("inputPassword").value;
-    
+    let doneArr = document.getElementsByName('doneRadio');
+    let done = null;
+    if (doneArr[0].checked === true){
+        done = doneArr[0].value;
+    }
+    if (doneArr[1].checked === true){
+        done = doneArr[1].value;
+    }
+
     //email validtion check
     if (email.slice(-4) != '.com' && email.slice(-4) != '.edu' && email.slice(-4) != '.org'){
         alert('Not a valid email address extension.');
@@ -28,6 +36,17 @@ function submitForm(){
     //password validation check
     if (password.length < 8 || password.length > 16){
         alert('Password must be 8-16 characters in length.');
+        return;
+    }
+
+    //check to see if user has selected yes for the done field
+    if (done === null){
+        alert("Sorry you didn't select if you were done or not, so you must restart from scratch.")
+        document.location.reload();
+        return;
+    }
+    if (done === 'no'){
+        alert('Please select yes if you are done with the form.');
         return;
     }
 
