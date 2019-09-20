@@ -1,5 +1,5 @@
 nav{
-    background-color: crimson;
+    background-color: steelblue;
     color: white;
     min-height: 50px;
     margin-bottom: 100px;
@@ -8,7 +8,6 @@ nav{
 .square{
     height: 50px;
     width: 50px;
-    border-radius: 5px;
     top: 100px;
     left: 200px;
     position: absolute;

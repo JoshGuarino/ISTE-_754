@@ -1,4 +1,6 @@
+//global variables
 let elem = document.getElementsByClassName('square')[0];
+let mouseOnSquare = false;
 
 //onclick event for square
 elem.addEventListener('click', function(){
@@ -6,41 +8,44 @@ elem.addEventListener('click', function(){
         curWidth = this.clientWidth,
         newHeight = curHeight * 2,
         newWidth = curWidth * 2;
-    if(newHeight > curWidth){
-        console.log(newHeight, newWidth);
+    while(newHeight > curHeight && newWidth > curWidth){
+        curHeight += 5;
+        curWidth += 5;
+        grow(curHeight, curWidth);
     }
-
-
-    // this.style.height = newHeight + "px";
-    // this.style.width = newWidth + "px";
-
-
 });
 
 //grow the square to dobule the size
-function grow(){
+function grow(height, width){
     setTimeout(function(){
-        //grow by 5px
+        elem.style.height = height + "px";
+        elem.style.width = width + "px";
     }, 40);
 }
 
 
-
-
-
-//onhover event for square
-//elem.addEventListener('mouseover', slideRight);
+//mouse over and out events
+elem.addEventListener('mouseover', function(){
+    mouseOnSquare = true;
+    let slideTimer = setInterval(slideRight, 40);
+    let checkTimer = setInterval(function(){
+        if(mouseOnSquare === false){
+            clearInterval(slideTimer);
+            learInterval(checkTimer);
+        }
+    });
+});
+elem.addEventListener('mouseout', function(){
+    mouseOnSquare = false;
+});
 
 //slide square to the right
 function slideRight(){
+    let curPos = elem.getBoundingClientRect().left;
+    newPos = curPos + 5;
+    elem.style.left = newPos + 'px';
 
-    let curPos =  parseInt(elem.style.left);
-    let newPos = curPos + 500;    
-    elem.style.left = newPos;
-    console.log(curPos + " " + newPos);
-    //setTimeout(slideRight, 40);
 }
-
 
 
 //reset the square object to its starting point.
