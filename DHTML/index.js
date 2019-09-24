@@ -31,7 +31,7 @@ elem.addEventListener('mouseover', function(){
     let checkTimer = setInterval(function(){
         if(mouseOnSquare === false){
             clearInterval(slideTimer);
-            learInterval(checkTimer);
+            clearInterval(checkTimer);
         }
     });
 });
