@@ -1,39 +1,35 @@
 //global variables
 let elem = document.getElementsByClassName('square')[0];
 let mouseOnSquare = false;
+let newHeight = elem.clientHeight * 2,
+    newWidth = elem.clientWidth * 2;
 
 //onclick event for square
 elem.addEventListener('click', function(){
-    let curHeight = this.clientHeight,
-        curWidth = this.clientWidth,
-        newHeight = curHeight * 2,
-        newWidth = curWidth * 2;
-    while(newHeight > curHeight && newWidth > curWidth){
-        curHeight += 5;
-        curWidth += 5;
-        grow(curHeight, curWidth);
-    }
+    newHeight = this.clientHeight * 2;
+    newWidth = this.clientWidth * 2;
+    grow();
 });
 
 //grow the square to dobule the size
-function grow(height, width){
-    setTimeout(function(){
-        elem.style.height = height + "px";
-        elem.style.width = width + "px";
-    }, 40);
+function grow(){
+    let curHeight = elem.clientHeight,
+        curWidth = elem.clientWidth;
+    if(curHeight >= newHeight && curWidth >= newWidth){
+        return;
+    }
+    curHeight += 5;
+    curWidth += 5;
+    elem.style.height = curHeight + "px";
+    elem.style.width = curWidth + "px";
+    setTimeout(grow, 40);
 }
 
 
 //mouse over and out events
 elem.addEventListener('mouseover', function(){
     mouseOnSquare = true;
-    let slideTimer = setInterval(slideRight, 40);
-    let checkTimer = setInterval(function(){
-        if(mouseOnSquare === false){
-            clearInterval(slideTimer);
-            clearInterval(checkTimer);
-        }
-    });
+    slideRight();
 });
 elem.addEventListener('mouseout', function(){
     mouseOnSquare = false;
@@ -41,10 +37,13 @@ elem.addEventListener('mouseout', function(){
 
 //slide square to the right
 function slideRight(){
+    if(mouseOnSquare === false){
+        return;
+    }
     let curPos = elem.getBoundingClientRect().left;
     newPos = curPos + 5;
     elem.style.left = newPos + 'px';
-
+    setTimeout(slideRight, 40);
 }
 
 
